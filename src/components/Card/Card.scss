@@ -1,0 +1,77 @@
+.card {
+    width: 7rem;
+    height: 9rem;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 6px;
+    margin: 0 1px;
+    text-align: center;
+}
+
+.card-suit {
+    width: 100%;
+    height: 100%;
+    font-size: 2rem;
+    display: flex;
+    flex-direction: column;
+
+    &:before {
+        flex-basis:100%;
+        align-self: flex-start;
+        position: relative;
+        bottom: 5px;
+        left: 5px
+    }
+
+    &:after {
+        flex-basis:100%;
+        align-self: flex-end;
+        position: relative;
+        top: 18px;
+        right: 5px;
+    }
+
+    &--diamonds {
+        color: red;
+        &:before {
+            content: "♦️";
+        }
+        &:after {
+            content: "♦️";
+        }  
+    }
+
+    &--clubs {
+        color: black;
+        &:before {
+            content: "♣️";
+        }  
+        &:after {
+            content: "♣️";
+        }  
+    }
+
+    &--hearts {
+        color: red;
+        &:before {
+            content: "♥️";
+        }  
+        &:after {
+            content: "♥️";
+        }  
+    }
+
+    &--spades {
+        color: red;
+        &:before {
+            content: "♠️";
+        }  
+        &:after {
+            content: "♠️";
+        }  
+    }
+}
+
+.card-rank {
+font-size: 2rem;
+}
