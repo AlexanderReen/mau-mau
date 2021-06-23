@@ -1,5 +1,6 @@
 import React from 'react';
-import Card from '../Card/Card';
+import { CardProps } from '../Card/Card';
+import Hand from '../Hand/Hand';
 import './Board.scss'
 
 interface BoardProps {
@@ -8,16 +9,25 @@ interface BoardProps {
 
 const Board = ({}: BoardProps) => {
 
-  const clickHandler = () => {
-    return (event: React.MouseEvent) => {
-      alert('placeholder Click')
-      event.preventDefault();
-    }
+  
+  const mockCards = [{
+    'suit': 'spades',
+    'rank': '5',
+    'side': 'front',
+  },
+  {
+    'suit': 'spades',
+    'rank': '6',
+    'side': 'front',
+  }] as CardProps[];
+
+  const handleCards = (card: CardProps) =>{
+    alert(card);
   }
 
   return (
     <div className="board">
-      <Card className="hello" onClick={clickHandler()} suit='spades' rank='5'></Card>
+      <Hand cards={mockCards} cardClick={handleCards}></Hand>
     </div>
   );
 }

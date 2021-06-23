@@ -1,22 +1,22 @@
 import React from 'react';
 import './Card.scss'
 
-interface CardProps {
-    className: string;
-    onClick(event: React.MouseEvent<HTMLElement>): void;
+export interface CardProps {
     suit: 'diamonds' | 'clubs' | 'hearts' | 'spades';
     rank: string;
+    side: 'front' | 'back';
+    click: (event: React.MouseEvent<HTMLElement>) => void;
 }
 
-const Card = ({className, onClick, suit, rank}: CardProps) => {
+const Card = ({suit, rank, side, click}: CardProps) => {
 
-    const cardClass = `card card-${className}`
-    const suitClass = `card-suit card-suit--${suit}`;
+    const cardClass = `card card--${side}`
+    const suitClass = `card__suit card__suit--${suit}`;
 
   return (
-    <div className={cardClass} onClick= {onClick}>
+    <div className={cardClass} onClick= {click}>
         <div className={suitClass}>
-            <span className='card-rank'>{rank}</span>
+            <span className='card__rank'>{rank}</span>
         </div>
     </div>
   );
