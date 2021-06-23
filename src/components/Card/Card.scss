@@ -4,8 +4,14 @@
     background-color: white;
     border: 1px solid black;
     border-radius: 6px;
-    margin: 0 1px;
+    z-index: 1;
+    transform: rotate(3deg);
     text-align: center;
+
+    &:hover {
+        transition: transform .3s ease;
+        transform: translate3d(0px, -30px, 0px);
+      }
 
     &--front {
         cursor: pointer;

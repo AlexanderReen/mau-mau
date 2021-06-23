@@ -9,17 +9,42 @@ interface BoardProps {
 
 const Board = ({}: BoardProps) => {
 
-  
   const mockCards = [{
     'suit': 'spades',
     'rank': '5',
     'side': 'front',
   },
   {
-    'suit': 'spades',
+    'suit': 'diamonds',
     'rank': '6',
     'side': 'front',
-  }] as CardProps[];
+  },
+  {
+    'suit': 'clubs',
+    'rank': '4',
+    'side': 'front',
+  },
+  {
+    'suit': 'clubs',
+    'rank': '6',
+    'side': 'front',
+  },
+  {
+    'suit': 'clubs',
+    'rank': '9',
+    'side': 'front',
+  },
+  {
+    'suit': 'spades',
+    'rank': '1',
+    'side': 'front',
+  },
+  {
+    'suit': 'diamonds',
+    'rank': '2',
+    'side': 'front',
+  },
+] as CardProps[];
 
   const handleCards = (card: CardProps) =>{
     alert(card);
