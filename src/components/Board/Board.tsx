@@ -27,7 +27,10 @@ const Board = ({}: BoardProps) => {
 
   return (
     <div className="board">
-      <Hand cards={mockCards} cardClick={handleCards}></Hand>
+      <Hand direction='north' cards={mockCards} cardClick={handleCards}></Hand>
+      <Hand direction='west' cards={mockCards} cardClick={handleCards}></Hand>
+      <Hand direction='south' cards={mockCards} cardClick={handleCards}></Hand>
+      <Hand direction='east' cards={mockCards} cardClick={handleCards}></Hand>
     </div>
   );
 }
