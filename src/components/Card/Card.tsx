@@ -2,13 +2,13 @@ import React from 'react';
 import './Card.scss'
 
 export interface CardProps {
-    suit: 'diamonds' | 'clubs' | 'hearts' | 'spades';
-    rank: string;
-    side: 'front' | 'back';
-    click: (event: React.MouseEvent<HTMLElement>) => void;
+  side: 'front' | 'back';
+  suit?: 'diamonds' | 'clubs' | 'hearts' | 'spades';
+  rank?: string;
+  click?: (event: React.MouseEvent<HTMLElement>) => void;
 }
 
-const Card = ({suit, rank, side, click}: CardProps) => {
+const Card = ({side, suit, rank, click}: CardProps) => {
 
     const cardClass = `card card--${side}`
     const suitClass = `card__suit card__suit--${suit}`;

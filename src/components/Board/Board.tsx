@@ -1,5 +1,6 @@
-import React from 'react';
 import { CardProps } from '../Card/Card';
+import StockPile from '../StockPile/StockPile';
+import DiscardPile from '../DiscardPile/DiscardPile';
 import Hand from '../Hand/Hand';
 import './Board.scss'
 
@@ -52,6 +53,10 @@ const Board = ({}: BoardProps) => {
 
   return (
     <div className="board">
+      <div className="board__center">
+        <StockPile></StockPile>
+        <DiscardPile></DiscardPile>
+      </div>
       <Hand direction='north' cards={mockCards} cardClick={handleCards}></Hand>
       <Hand direction='west' cards={mockCards} cardClick={handleCards}></Hand>
       <Hand direction='south' cards={mockCards} cardClick={handleCards}></Hand>
