@@ -8,18 +8,33 @@ export interface CardProps {
   click?: (event: React.MouseEvent<HTMLElement>) => void;
 }
 
-const Card = ({side, suit, rank, click}: CardProps) => {
+class Card extends React.Component<CardProps> {
+  side; 
+  suit; 
+  rank; 
+  click;
+  cardClass: string;
+  suitClass: string;
 
-    const cardClass = `card card--${side}`
-    const suitClass = `card__suit card__suit--${suit}`;
+  constructor(props: CardProps) {
+    super(props);
+    this.side = props.side;
+    this.suit = props.suit;
+    this.rank = props.rank;
+    this.click = props.click;
+    this.cardClass =  `card card--${this.side}`;
+    this.suitClass = `card__suit card__suit--${this.suit}`;
+  }
 
-  return (
-    <div className={cardClass} onClick= {click}>
-        <div className={suitClass}>
-            <span className='card__rank'>{rank}</span>
+  render() {
+    return (
+      <div className={this.cardClass} onClick={this.click}>
+        <div className={this.suitClass}>
+          <span className='card__rank'>{this.rank}</span>
         </div>
-    </div>
-  );
+      </div>
+    );
+  }
 }
 
 export default Card;
