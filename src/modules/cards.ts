@@ -39,27 +39,42 @@ export const RANKS = {
     13: 'K',
 };
 
-export const initCards = () => {
-const cards = [] as CardProps[]
+//TODO: Implement game rules
+export const RULES = {
+    players: 4,
+    maxCards: 7,
+    trumps: false,
+}
 
-for (let suit of Object.values(SUITS)) {
-    for (let rank of Object.values(RANKS)) {
-      cards.push(new Card({ suit, rank } as CardProps));
+export const initCards = () => {
+    const cards = [] as CardProps[]
+
+    for (let suit of Object.values(SUITS)) {
+        for (let rank of Object.values(RANKS)) {
+            cards.push(new Card({ suit, rank } as CardProps));
+        }
     }
-  }
-return cards
+    return cards
 }
 
 export const shuffleCards = (cards: CardProps[]) => {
-const shuffledCards = cards;
+    const shuffledCards = cards;
 
-for (let i = cards.length - 1; i > 0; i--) {
-    let j = Math.floor(Math.random() * (i + 1));
-    [cards[i], cards[j]] = [cards[j], cards[i]];
+    for (let i = shuffledCards.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        [shuffledCards[i],
+        shuffledCards[j]] =
+            [shuffledCards[j],
+            shuffledCards[i]];
     }
-return shuffledCards;
+    return shuffledCards;
 }
 
 export const dealCards = (cards: CardProps[]) => {
-
-    }
+    const pile1 = cards.slice(0, 7);
+    const pile2 = cards.slice(7, 14);
+    const pile3 = cards.slice(14, 21);
+    const pile4 = cards.slice(21, 28);
+    const stockPile = cards.slice(28, cards.length);   
+    return { pile1, pile2, pile3, pile4, stockPile }
+}

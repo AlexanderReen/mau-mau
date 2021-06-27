@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { CardProps } from "../../components/Card/Card";
-import { initCards, shuffleCards } from "../../modules/cards";
-
+import { dealCards, initCards, shuffleCards } from "../../modules/cards";
+import { RootState } from "../store";
 export interface GameState {
     inProgress: boolean;
     winner: string;
@@ -31,7 +31,12 @@ const gameSlice = createSlice({
       startGame(state) {
         state.inProgress = true;
         const cards = shuffleCards(initCards());
-        state.stockPile = cards;
+        const dealedCards = dealCards(cards);
+        state.player1Hand = dealedCards.pile1;
+        state.player2Hand = dealedCards.pile2;
+        state.player3Hand = dealedCards.pile3;
+        state.player4Hand = dealedCards.pile4;
+        state.stockPile = dealedCards.stockPile;
       },
       endGame(state) {
         Object.assign(state, initialState)
@@ -55,5 +60,10 @@ const gameSlice = createSlice({
   })
 
   export const { startGame, endGame, playerHand, playerPlays, playerPlayed, playerDraws, playerWins } = gameSlice.actions;
+
+  export const selectPlayer1Hand = (state: RootState) => state.game.player1Hand;
+  export const selectPlayer2Hand = (state: RootState) => state.game.player2Hand;
+  export const selectPlayer3Hand = (state: RootState) => state.game.player3Hand;
+  export const selectPlayer4Hand = (state: RootState) => state.game.player4Hand;
 
   export default gameSlice.reducer;

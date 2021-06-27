@@ -3,6 +3,10 @@ import StockPile from '../StockPile/StockPile';
 import DiscardPile from '../DiscardPile/DiscardPile';
 import Hand from '../Hand/Hand';
 import './Board.scss'
+import { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { selectPlayer1Hand, selectPlayer2Hand, selectPlayer3Hand, selectPlayer4Hand, startGame } from '../../store/reducers/game-reducer';
+import { useSelector } from 'react-redux';
 
 interface BoardProps {
 }
@@ -10,46 +14,20 @@ interface BoardProps {
 
 const Board = ({}: BoardProps) => {
 
-  const mockCards = [{
-    'suit': 'spades',
-    'rank': '5',
-    'side': 'front',
-  },
-  {
-    'suit': 'diamonds',
-    'rank': '6',
-    'side': 'front',
-  },
-  {
-    'suit': 'clubs',
-    'rank': '4',
-    'side': 'front',
-  },
-  {
-    'suit': 'clubs',
-    'rank': '6',
-    'side': 'front',
-  },
-  {
-    'suit': 'clubs',
-    'rank': '9',
-    'side': 'front',
-  },
-  {
-    'suit': 'spades',
-    'rank': '1',
-    'side': 'front',
-  },
-  {
-    'suit': 'diamonds',
-    'rank': '2',
-    'side': 'front',
-  },
-] as CardProps[];
+  const hand1Cards = useAppSelector(selectPlayer1Hand);
+  const hand2Cards = useAppSelector(selectPlayer2Hand);
+  const hand3Cards = useAppSelector(selectPlayer3Hand);
+  const hand4Cards = useAppSelector(selectPlayer4Hand);
+  const dispatch = useAppDispatch();
 
   const handleCards = (card: CardProps) =>{
     alert(card);
   }
+
+  useEffect(() => {
+    dispatch(startGame());
+  }, [dispatch])
+  
 
   return (
     <div className="board">
@@ -57,10 +35,10 @@ const Board = ({}: BoardProps) => {
         <StockPile></StockPile>
         <DiscardPile></DiscardPile>
       </div>
-      <Hand direction='north' cards={mockCards} cardClick={handleCards}></Hand>
-      <Hand direction='west' cards={mockCards} cardClick={handleCards}></Hand>
-      <Hand direction='south' cards={mockCards} cardClick={handleCards}></Hand>
-      <Hand direction='east' cards={mockCards} cardClick={handleCards}></Hand>
+      <Hand index={1} name='Max' cards={hand1Cards} cardClick={handleCards}></Hand>
+      <Hand index={2} name='Lando' cards={hand2Cards} cardClick={handleCards}></Hand>
+      <Hand index={3} name ='Kimi' cards={hand3Cards} cardClick={handleCards}></Hand>
+      <Hand index={4} name ='Lewis' cards={hand4Cards} cardClick={handleCards}></Hand>
     </div>
   );
 }
