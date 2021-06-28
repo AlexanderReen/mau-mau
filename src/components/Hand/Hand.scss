@@ -17,6 +17,9 @@
     }
 
     .card {
+        &--front {
+            cursor: pointer;
+        }
         transform: rotate(3deg);
         &:hover {
             transition: transform 0.3s ease;

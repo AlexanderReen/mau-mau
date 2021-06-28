@@ -7,10 +7,6 @@
     z-index: 1;
     text-align: center;
 
-    &--front {
-        cursor: pointer;
-    }
-
     &--back {
         background-image: url('../../assets/images/card-bg.png');
         .card__suit{

@@ -24,6 +24,10 @@ const Board = ({}: BoardProps) => {
     dispatch(playCard({player, card}))
   }
 
+  const handleStockCards = () => {
+    dispatch(drawCard())
+  }
+
   useEffect(() => {
     dispatch(startGame());
   }, [dispatch])
@@ -32,7 +36,7 @@ const Board = ({}: BoardProps) => {
   return (
     <div className="board">
       <div className="board__center">
-        <StockPile></StockPile>
+        <StockPile cardClick={handleStockCards}></StockPile>
         <DiscardPile cards={discardCards}></DiscardPile>
       </div>
       <Hand player={1} name='Max' cards={hand1Cards} cardClick={handleCards}></Hand>
@@ -44,3 +48,7 @@ const Board = ({}: BoardProps) => {
 }
 
 export default Board;
+function drawCard(): any {
+  throw new Error('Function not implemented.');
+}
+

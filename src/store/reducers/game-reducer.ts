@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { act } from "react-dom/test-utils";
 import { CardProps } from "../../components/Card/Card";
 import { dealCards, initCards, isPlayableCard, removeCard, shuffleCards } from "../../modules/cards";
 import { RootState } from "../store";
@@ -62,13 +61,13 @@ const gameSlice = createSlice({
         }
       }
     },
+    drawCard(state, action: PayloadAction<number>) {
+
+    },
     playerPlays(state, action: PayloadAction<number>) {
 
     },
     playerPlayed(state, action: PayloadAction<number>) {
-
-    },
-    playerDraws(state, action: PayloadAction<number>) {
 
     },
     playerWins(state, action: PayloadAction<number>) {
@@ -77,7 +76,7 @@ const gameSlice = createSlice({
   },
 })
 
-export const { startGame, endGame, playerPlays, playCard, playerPlayed, playerDraws, playerWins } = gameSlice.actions;
+export const { startGame, endGame, playCard, drawCard, playerPlays, playerPlayed, playerWins } = gameSlice.actions;
 
 export const selectPlayer1Hand = (state: RootState) => state.game.player1Hand;
 export const selectPlayer2Hand = (state: RootState) => state.game.player2Hand;

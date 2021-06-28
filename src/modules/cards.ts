@@ -44,7 +44,7 @@ export const initCards = () => {
 }
 
 export const shuffleCards = (cards: CardProps[]) => {
-    const shuffledCards = cards;
+    const shuffledCards = [...cards];
 
     for (let i = shuffledCards.length - 1; i > 0; i--) {
         let j = Math.floor(Math.random() * (i + 1));
