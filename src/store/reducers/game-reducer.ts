@@ -8,6 +8,7 @@ import {
   shuffleCards,
 } from "../../modules/cards";
 import { RootState } from "../store";
+
 export interface GameState {
   inProgress: boolean;
   winner: string;
@@ -36,6 +37,7 @@ const gameSlice = createSlice({
   name: "game",
   initialState,
   reducers: {
+    // Starting the Mau-Mau game
     startGame(state) {
       state.inProgress = true;
       const cards = shuffleCards(initCards());
@@ -51,10 +53,12 @@ const gameSlice = createSlice({
       );
       state.playerTurn = 1;
     },
+    // Ending the Mau-Mau game
     endGame(state) {
       Object.assign(state, initialState);
     },
     //TODO: Create specific interface type for payload
+    // Playing a card on the discardPile
     playCard(state, action: PayloadAction<any>) {
       if (state.playerTurn === action.payload.player) {
         const discardPileCard = state.discardPile[state.discardPile.length - 1];
@@ -91,6 +95,7 @@ const gameSlice = createSlice({
         }
       }
     },
+    // Drawing a card from the stockPile
     drawCard(state) {
       const stockPileCard = state.stockPile[state.stockPile.length - 1];
       switch (state.playerTurn) {
@@ -111,6 +116,7 @@ const gameSlice = createSlice({
       state.playerTurn = state.playerTurn < 4 ? state.playerTurn + 1 : 1;
     },
     //TODO: Implement win
+    // Announce that a player won the game
     playerWins(state, action: PayloadAction<number>) {
     },
   },
