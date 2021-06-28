@@ -115,9 +115,11 @@ const gameSlice = createSlice({
       state.stockPile = removeCard(stockPileCard, state.stockPile);
       state.playerTurn = state.playerTurn < 4 ? state.playerTurn + 1 : 1;
     },
-    //TODO: Implement win
-    // Announce that a player won the game
-    playerWins(state, action: PayloadAction<number>) {
+    //TODO: Create specific interface type for payload
+    playerWins(state, action: PayloadAction<any>) {
+      state.inProgress = false;
+      state.winner = action.payload.player;
+      //TODO: Add modal with close button => dispatch endGame
     },
   },
 });
