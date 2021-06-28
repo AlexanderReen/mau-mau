@@ -37,13 +37,11 @@ const gameSlice = createSlice({
         state.player2Hand = dealedCards.pile2;
         state.player3Hand = dealedCards.pile3;
         state.player4Hand = dealedCards.pile4;
-        state.stockPile = dealedCards.stockPile;
+        state.discardPile = state.discardPile.concat(dealedCards.stockPile[0]);
+        state.stockPile = removeCard(dealedCards.stockPile[0], dealedCards.stockPile)
       },
       endGame(state) {
         Object.assign(state, initialState)
-      },
-      playerPlays(state, action: PayloadAction<number>) {
-
       },
       playCard(state, action: PayloadAction<any>) {
         state.discardPile = state.discardPile.concat(action.payload.card)
@@ -61,6 +59,8 @@ const gameSlice = createSlice({
             state.player4Hand = removeCard(action.payload.card, state.player4Hand)
             break;
         }
+      },
+      playerPlays(state, action: PayloadAction<number>) {
 
       },
       playerPlayed(state, action: PayloadAction<number>) {

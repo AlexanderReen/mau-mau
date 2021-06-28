@@ -19,8 +19,6 @@
         &--north {
             transform: rotate(180deg);
             top: 10px;
-            left:50%;
-            margin-left:-350px;
         }
     
         &--west {
@@ -32,8 +30,6 @@
     
         &--south {
             bottom: 10px;
-            left:50%;
-            margin-left:-350px;
         }
     
         &--east {
@@ -52,9 +48,11 @@
 
     .stock-pile {
         position: relative;
+        right: 100px
     }
 
     .discard-pile {
         position: relative;
+        bottom: 66px;
     }
 }
