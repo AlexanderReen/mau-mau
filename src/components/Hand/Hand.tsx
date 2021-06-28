@@ -44,7 +44,8 @@ const Hand = ({ player, name, cards, cardClick }: HandProps) => {
     <div className={handClass}>
       <h1 className='hand__name'>{name}</h1>
       {cards.map((card, index) => (
-        <Card key={index}
+        <Card key={card.id}
+          id={card.id}
           suit={card.suit}
           rank={card.rank}
           side={card.side}

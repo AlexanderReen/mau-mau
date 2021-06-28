@@ -1,26 +1,11 @@
 import Card, { CardProps } from '../components/Card/Card';
+import { v4 as uuidv4 } from 'uuid';
 
 export const SUITS = {
     DIAMONDS: 'diamonds',
     HEARTS: 'hearts',
     CLUBS: 'clubs',
     SPADES: 'spades',
-};
-
-export const VALUES = {
-    ONE: 1,
-    TWO: 2,
-    THREE: 3,
-    FOUR: 4,
-    FIVE: 5,
-    SIX: 6,
-    SEVEN: 7,
-    EIGHT: 8,
-    NINE: 9,
-    TEN: 10,
-    JACK: 11,
-    QUEEN: 12,
-    KING: 13,
 };
 
 export const RANKS = {
@@ -51,7 +36,8 @@ export const initCards = () => {
 
     for (let suit of Object.values(SUITS)) {
         for (let rank of Object.values(RANKS)) {
-            cards.push(new Card({ suit, rank } as CardProps));
+            const id = uuidv4();
+            cards.push(new Card({ id, suit, rank } as CardProps));
         }
     }
     return cards
@@ -80,6 +66,7 @@ export const dealCards = (cards: CardProps[]) => {
 }
 
 export const removeCard =(card: CardProps, cards: CardProps[]) => {
-    const leftoverCards = cards.filter(leftoverCard => card !== leftoverCard )
+    let leftoverCards = [...cards];
+    leftoverCards = cards.filter(leftoverCard => card !== leftoverCard )
     return leftoverCards;
 }

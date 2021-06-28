@@ -2,6 +2,7 @@ import React from 'react';
 import './Card.scss'
 
 export interface CardProps {
+  id?: string;
   side?: 'front' | 'back';
   suit?: 'diamonds' | 'clubs' | 'hearts' | 'spades';
   rank?: string;
@@ -11,6 +12,7 @@ export interface CardProps {
 
 //TODO: Rewrite to functional component to turn off serialize?
 class Card extends React.Component<CardProps> {
+  id;
   side; 
   suit; 
   rank; 
@@ -20,6 +22,7 @@ class Card extends React.Component<CardProps> {
 
   constructor(props: CardProps) {
     super(props);
+    this.id = props.id;
     this.side = props.side;
     this.suit = props.suit;
     this.rank = props.rank;

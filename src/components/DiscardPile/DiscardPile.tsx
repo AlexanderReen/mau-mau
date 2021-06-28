@@ -9,8 +9,9 @@ const DiscardPile = ({ cards }: DiscardPileProps) => {
 
   return (
     <div className='discard-pile'>
-      {cards.map((card, index) => (
-        <Card key={index}
+      {cards.map((card) => (
+        <Card key={card.id}
+          id={card.id}
           suit={card.suit}
           rank={card.rank}
           side={card.side}>
