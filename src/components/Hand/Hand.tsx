@@ -1,6 +1,5 @@
-import Card, { CardProps } from '../Card/Card';
-import './Hand.scss'
-
+import Card, { CardProps } from "../Card/Card";
+import "./Hand.scss";
 
 interface HandProps {
   player: number;
@@ -11,57 +10,59 @@ interface HandProps {
 }
 
 const Hand = ({ player, turn, name, cards, cardClick }: HandProps) => {
-
   const cardClickHandler = (card: CardProps) => {
     return (event: React.MouseEvent) => {
       cardClick(player, card);
       event.preventDefault();
-    }
-  }
+    };
+  };
 
   const getDirection = (player: number) => {
     let direction;
     switch (player) {
       case 1:
-        direction = 'south';
+        direction = "south";
         break;
       case 2:
-        direction = 'west';
+        direction = "west";
         break;
       case 3:
-        direction = 'north';
+        direction = "north";
         break;
       case 4:
-        direction = 'east'
+        direction = "east";
         break;
     }
     return direction;
-  }
+  };
 
-  const isActive = (player: number, turn: number) : boolean => {
+  const isActive = (player: number, turn: number): boolean => {
     if (player === turn) return true;
     return false;
-  }
+  };
 
   const direction = getDirection(player);
-  const handClass = `hand hand--${direction} ${isActive(player, turn) ? 'hand--active': ''}`
+  const handClass = `hand hand--${direction} ${
+    isActive(player, turn) ? "hand--active" : ""
+  }`;
 
   return (
     <div className={handClass}>
-      <h1 className='hand__name'>{name}</h1>
-      <div className='hand__cards'>
-      {cards.map((card) => (
-        <Card key={card.id}
-          id={card.id}
-          suit={card.suit}
-          rank={card.rank}
-          side={card.side}
-          click={cardClickHandler(card)}>
-        </Card>
-      ))}
+      <h1 className="hand__name">{name}</h1>
+      <div className="hand__cards">
+        {cards.map((card) => (
+          <Card
+            key={card.id}
+            id={card.id}
+            suit={card.suit}
+            rank={card.rank}
+            side={card.side}
+            click={cardClickHandler(card)}
+          ></Card>
+        ))}
       </div>
     </div>
   );
-}
+};
 
 export default Hand;

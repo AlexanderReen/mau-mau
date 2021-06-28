@@ -90,9 +90,28 @@ const gameSlice = createSlice({
         }
       }
     },
-    drawCard(state, action: PayloadAction<number>) { },
-    playerPlays(state, action: PayloadAction<number>) { },
-    playerPlayed(state, action: PayloadAction<number>) { },
+    drawCard(state) {
+      const stockPileCard = state.stockPile[state.stockPile.length - 1];
+      switch (state.playerTurn) {
+        case 1:
+          state.player1Hand = state.player1Hand.concat(stockPileCard);
+          break;
+        case 2:
+          state.player2Hand = state.player2Hand.concat(stockPileCard);
+          break;
+        case 3:
+          state.player3Hand = state.player3Hand.concat(stockPileCard);
+          break;
+        case 4:
+          state.player4Hand = state.player4Hand.concat(stockPileCard);
+          break;
+      }
+      state.stockPile = removeCard(
+        stockPileCard,
+        state.stockPile
+      );
+      state.playerTurn = state.playerTurn < 4 ? state.playerTurn + 1 : 1;
+     },
     playerWins(state, action: PayloadAction<number>) { },
   },
 });
@@ -102,8 +121,6 @@ export const {
   endGame,
   playCard,
   drawCard,
-  playerPlays,
-  playerPlayed,
   playerWins,
 } = gameSlice.actions;
 
@@ -112,6 +129,7 @@ export const selectPlayer2Hand = (state: RootState) => state.game.player2Hand;
 export const selectPlayer3Hand = (state: RootState) => state.game.player3Hand;
 export const selectPlayer4Hand = (state: RootState) => state.game.player4Hand;
 export const selectDiscardPile = (state: RootState) => state.game.discardPile;
+export const selectStockPile = (state: RootState) => state.game.stockPile;
 export const selectPlayerTurn = (state: RootState) => state.game.playerTurn;
 
 export default gameSlice.reducer;

@@ -32,7 +32,7 @@ export const RULES = {
 }
 
 export const initCards = () => {
-    const cards = [] as CardProps[]
+    const cards = [] as CardProps[];
 
     for (let suit of Object.values(SUITS)) {
         for (let rank of Object.values(RANKS)) {
