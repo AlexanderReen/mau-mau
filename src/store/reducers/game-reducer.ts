@@ -54,6 +54,7 @@ const gameSlice = createSlice({
     endGame(state) {
       Object.assign(state, initialState);
     },
+    //TODO: Create specific interface type for payload
     playCard(state, action: PayloadAction<any>) {
       if (state.playerTurn === action.payload.player) {
         const discardPileCard = state.discardPile[state.discardPile.length - 1];
@@ -106,23 +107,17 @@ const gameSlice = createSlice({
           state.player4Hand = state.player4Hand.concat(stockPileCard);
           break;
       }
-      state.stockPile = removeCard(
-        stockPileCard,
-        state.stockPile
-      );
+      state.stockPile = removeCard(stockPileCard, state.stockPile);
       state.playerTurn = state.playerTurn < 4 ? state.playerTurn + 1 : 1;
-     },
-    playerWins(state, action: PayloadAction<number>) { },
+    },
+    //TODO: Implement win
+    playerWins(state, action: PayloadAction<number>) {
+    },
   },
 });
 
-export const {
-  startGame,
-  endGame,
-  playCard,
-  drawCard,
-  playerWins,
-} = gameSlice.actions;
+export const { startGame, endGame, playCard, drawCard, playerWins } =
+  gameSlice.actions;
 
 export const selectPlayer1Hand = (state: RootState) => state.game.player1Hand;
 export const selectPlayer2Hand = (state: RootState) => state.game.player2Hand;

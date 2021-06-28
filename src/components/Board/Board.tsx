@@ -18,6 +18,8 @@ import {
   startGame,
 } from "../../store/reducers/game-reducer";
 
+
+//TODO: Implement an interface?
 interface BoardProps {}
 
 const Board = ({}: BoardProps) => {
