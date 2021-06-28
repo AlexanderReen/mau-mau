@@ -78,3 +78,8 @@ export const dealCards = (cards: CardProps[]) => {
     const stockPile = cards.slice(28, cards.length);   
     return { pile1, pile2, pile3, pile4, stockPile }
 }
+
+export const removeCard =(card: CardProps, cards: CardProps[]) => {
+    const leftoverCards = cards.filter(leftoverCard => card !== leftoverCard )
+    return leftoverCards;
+}

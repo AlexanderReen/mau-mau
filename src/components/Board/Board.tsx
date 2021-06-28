@@ -20,8 +20,8 @@ const Board = ({}: BoardProps) => {
   const discardCards = useAppSelector(selectDiscardPile);
   const dispatch = useAppDispatch();
 
-  const handleCards = (card: CardProps) =>{
-    dispatch(playCard(card))
+  const handleCards = (player: number, card: CardProps) =>{
+    dispatch(playCard({player, card}))
   }
 
   useEffect(() => {
@@ -35,10 +35,10 @@ const Board = ({}: BoardProps) => {
         <StockPile></StockPile>
         <DiscardPile cards={discardCards}></DiscardPile>
       </div>
-      <Hand index={1} name='Max' cards={hand1Cards} cardClick={handleCards}></Hand>
-      <Hand index={2} name='Lando' cards={hand2Cards} cardClick={handleCards}></Hand>
-      <Hand index={3} name ='Kimi' cards={hand3Cards} cardClick={handleCards}></Hand>
-      <Hand index={4} name ='Lewis' cards={hand4Cards} cardClick={handleCards}></Hand>
+      <Hand player={1} name='Max' cards={hand1Cards} cardClick={handleCards}></Hand>
+      <Hand player={2} name='Lando' cards={hand2Cards} cardClick={handleCards}></Hand>
+      <Hand player={3} name ='Kimi' cards={hand3Cards} cardClick={handleCards}></Hand>
+      <Hand player={4} name ='Lewis' cards={hand4Cards} cardClick={handleCards}></Hand>
     </div>
   );
 }

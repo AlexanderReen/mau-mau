@@ -2,7 +2,7 @@ import React from 'react';
 import './Card.scss'
 
 export interface CardProps {
-  side: 'front' | 'back';
+  side?: 'front' | 'back';
   suit?: 'diamonds' | 'clubs' | 'hearts' | 'spades';
   rank?: string;
   click?: (event: React.MouseEvent<HTMLElement>) => void;

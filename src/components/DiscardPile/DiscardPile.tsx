@@ -7,16 +7,15 @@ export interface DiscardPileProps {
 
 const DiscardPile = ({ cards }: DiscardPileProps) => {
 
-  let lastCard: CardProps = cards[cards.length - 1];
-  console.log(lastCard);
-
   return (
     <div className='discard-pile'>
-       {lastCard && (
-          <Card suit={lastCard.suit}
-          rank={lastCard.rank}
-          side={lastCard.side}></Card>
-       )}
+      {cards.map((card, index) => (
+        <Card key={index}
+          suit={card.suit}
+          rank={card.rank}
+          side={card.side}>
+        </Card>
+      ))}
     </div>
   );
 }

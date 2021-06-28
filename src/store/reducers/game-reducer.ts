@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
+import { act } from "react-dom/test-utils";
 import { CardProps } from "../../components/Card/Card";
-import { dealCards, initCards, shuffleCards } from "../../modules/cards";
+import { dealCards, initCards, removeCard, shuffleCards } from "../../modules/cards";
 import { RootState } from "../store";
 export interface GameState {
     inProgress: boolean;
@@ -44,8 +45,22 @@ const gameSlice = createSlice({
       playerPlays(state, action: PayloadAction<number>) {
 
       },
-      playCard(state, action: PayloadAction<CardProps>) {
-        state.discardPile = state.discardPile.concat(action.payload)
+      playCard(state, action: PayloadAction<any>) {
+        state.discardPile = state.discardPile.concat(action.payload.card)
+        switch (action.payload.player) {
+          case 1:
+            state.player1Hand = removeCard(action.payload.card, state.player1Hand)
+            break;
+          case 2:
+            state.player2Hand = removeCard(action.payload.card, state.player2Hand)
+            break;
+          case 3:
+            state.player3Hand = removeCard(action.payload.card, state.player3Hand)
+            break;
+          case 4:
+            state.player4Hand = removeCard(action.payload.card, state.player4Hand)
+            break;
+        }
 
       },
       playerPlayed(state, action: PayloadAction<number>) {
