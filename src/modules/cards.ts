@@ -65,8 +65,13 @@ export const dealCards = (cards: CardProps[]) => {
     return { pile1, pile2, pile3, pile4, stockPile }
 }
 
-export const removeCard =(card: CardProps, cards: CardProps[]) => {
+export const removeCard = (card: CardProps, cards: CardProps[]) => {
     let leftoverCards = [...cards];
     leftoverCards = cards.filter(leftoverCard => card !== leftoverCard )
     return leftoverCards;
+}
+
+export const isPlayableCard = (firstCard: CardProps, secondCard: CardProps) : boolean => {
+    if (firstCard.suit !== secondCard.suit && firstCard.rank !== secondCard.rank) return false;
+    return true;
 }
