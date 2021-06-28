@@ -1,15 +1,19 @@
 .hand {
-    width: 700px;
     display: flex;
-    flex-direction: row;
-    position: absolute;
 
     &__name {
-        position: relative;
-        top: 70px;
-        right: 15px;
+        position: absolute;
+        bottom: 120px;
+        left: 10px;
         color: white;
         text-shadow: 1px 1px 2px black, 1px -1px 2px black, -1px 1px 2px black, -1px -1px 2px black;
+    }
+
+    &__cards {
+        width: 700px;
+        display: flex;
+        flex-direction: row;
+        
     }
 
     .card {
