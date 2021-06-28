@@ -3,13 +3,13 @@ import './Hand.scss'
 
 
 interface HandProps {
-    index: number;
-    name: string;
-    cards: CardProps[];
-    cardClick: (card: CardProps) => void;
+  index: number;
+  name: string;
+  cards: CardProps[];
+  cardClick: (card: CardProps) => void;
 }
 
-const Hand = ({index, name, cards, cardClick}: HandProps) => {
+const Hand = ({ index, name, cards, cardClick }: HandProps) => {
 
   const cardClickHandler = (card: CardProps) => {
     return (event: React.MouseEvent) => {
@@ -34,7 +34,6 @@ const Hand = ({index, name, cards, cardClick}: HandProps) => {
         direction = 'east'
         break;
     }
-
     return direction;
   }
 
@@ -44,11 +43,12 @@ const Hand = ({index, name, cards, cardClick}: HandProps) => {
   return (
     <div className={handClass}>
       <h1 className='hand__name'>{name}</h1>
-      {cards.map((card) => (
-        <Card suit={card.suit} 
-        rank={card.rank} 
-        side={card.side} 
-        click={cardClickHandler(card)}>
+      {cards.map((card, index) => (
+        <Card key={index}
+          suit={card.suit}
+          rank={card.rank}
+          side={card.side}
+          click={cardClickHandler(card)}>
         </Card>
       ))}
     </div>

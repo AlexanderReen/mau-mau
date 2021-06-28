@@ -8,6 +8,8 @@ export interface CardProps {
   click?: (event: React.MouseEvent<HTMLElement>) => void;
 }
 
+
+//TODO: Rewrite to functional component to turn off serialize?
 class Card extends React.Component<CardProps> {
   side; 
   suit; 
@@ -22,7 +24,7 @@ class Card extends React.Component<CardProps> {
     this.suit = props.suit;
     this.rank = props.rank;
     this.click = props.click;
-    this.cardClass =  `card card--${this.side}`;
+    this.cardClass =  `card card--${this.side ? this.side : 'front'}`;
     this.suitClass = `card__suit card__suit--${this.suit}`;
   }
 

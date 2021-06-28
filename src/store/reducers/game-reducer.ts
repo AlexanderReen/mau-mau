@@ -41,10 +41,11 @@ const gameSlice = createSlice({
       endGame(state) {
         Object.assign(state, initialState)
       },
-      playerHand(state, action: PayloadAction<number>) {
+      playerPlays(state, action: PayloadAction<number>) {
 
       },
-      playerPlays(state, action: PayloadAction<number>) {
+      playCard(state, action: PayloadAction<CardProps>) {
+        state.discardPile = state.discardPile.concat(action.payload)
 
       },
       playerPlayed(state, action: PayloadAction<number>) {
@@ -59,11 +60,12 @@ const gameSlice = createSlice({
     },
   })
 
-  export const { startGame, endGame, playerHand, playerPlays, playerPlayed, playerDraws, playerWins } = gameSlice.actions;
+  export const { startGame, endGame, playerPlays, playCard, playerPlayed, playerDraws, playerWins } = gameSlice.actions;
 
   export const selectPlayer1Hand = (state: RootState) => state.game.player1Hand;
   export const selectPlayer2Hand = (state: RootState) => state.game.player2Hand;
   export const selectPlayer3Hand = (state: RootState) => state.game.player3Hand;
   export const selectPlayer4Hand = (state: RootState) => state.game.player4Hand;
+  export const selectDiscardPile = (state: RootState) => state.game.discardPile;
 
   export default gameSlice.reducer;
