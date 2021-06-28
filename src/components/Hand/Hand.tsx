@@ -4,12 +4,13 @@ import './Hand.scss'
 
 interface HandProps {
   player: number;
+  turn: number;
   name: string;
   cards: CardProps[];
   cardClick: (player: number, card: CardProps) => void;
 }
 
-const Hand = ({ player, name, cards, cardClick }: HandProps) => {
+const Hand = ({ player, turn, name, cards, cardClick }: HandProps) => {
 
   const cardClickHandler = (card: CardProps) => {
     return (event: React.MouseEvent) => {
@@ -25,10 +26,10 @@ const Hand = ({ player, name, cards, cardClick }: HandProps) => {
         direction = 'south';
         break;
       case 2:
-        direction = 'north';
+        direction = 'west';
         break;
       case 3:
-        direction = 'west';
+        direction = 'north';
         break;
       case 4:
         direction = 'east'
@@ -37,8 +38,13 @@ const Hand = ({ player, name, cards, cardClick }: HandProps) => {
     return direction;
   }
 
+  const isActive = (player: number, turn: number) : boolean => {
+    if (player === turn) return true;
+    return false;
+  }
+
   const direction = getDirection(player);
-  const handClass = `hand hand--${direction}`
+  const handClass = `hand hand--${direction} ${isActive(player, turn) ? 'hand--active': ''}`
 
   return (
     <div className={handClass}>

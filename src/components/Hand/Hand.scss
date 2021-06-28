@@ -17,13 +17,22 @@
     }
 
     .card {
-        &--front {
-            cursor: pointer;
-        }
         transform: rotate(3deg);
-        &:hover {
-            transition: transform 0.3s ease;
-            transform: translate3d(0px, -30px, 0px);
+    }
+
+    &--active {
+
+        .hand__name {
+            color: gold;
+        }
+        .card {
+            &--front {
+                cursor: pointer;
+            }
+            &:hover {
+                transition: transform 0.3s ease;
+                transform: translate3d(0px, -30px, 0px);
+            }
         }
     }
 }

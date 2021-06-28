@@ -5,7 +5,7 @@ import Hand from '../Hand/Hand';
 import './Board.scss'
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { playCard, selectDiscardPile, selectPlayer1Hand, selectPlayer2Hand, selectPlayer3Hand, selectPlayer4Hand, startGame } from '../../store/reducers/game-reducer';
+import { playCard, selectDiscardPile, selectPlayer1Hand, selectPlayer2Hand, selectPlayer3Hand, selectPlayer4Hand, selectPlayerTurn, startGame } from '../../store/reducers/game-reducer';
 
 interface BoardProps {
 }
@@ -13,12 +13,13 @@ interface BoardProps {
 
 const Board = ({}: BoardProps) => {
 
+  const dispatch = useAppDispatch();
   const hand1Cards = useAppSelector(selectPlayer1Hand);
   const hand2Cards = useAppSelector(selectPlayer2Hand);
   const hand3Cards = useAppSelector(selectPlayer3Hand);
   const hand4Cards = useAppSelector(selectPlayer4Hand);
   const discardCards = useAppSelector(selectDiscardPile);
-  const dispatch = useAppDispatch();
+  const playerTurn = useAppSelector(selectPlayerTurn);
 
   const handleCards = (player: number, card: CardProps) =>{
     dispatch(playCard({player, card}))
@@ -39,10 +40,10 @@ const Board = ({}: BoardProps) => {
         <StockPile cardClick={handleStockCards}></StockPile>
         <DiscardPile cards={discardCards}></DiscardPile>
       </div>
-      <Hand player={1} name='Max' cards={hand1Cards} cardClick={handleCards}></Hand>
-      <Hand player={2} name='Lando' cards={hand2Cards} cardClick={handleCards}></Hand>
-      <Hand player={3} name ='Kimi' cards={hand3Cards} cardClick={handleCards}></Hand>
-      <Hand player={4} name ='Lewis' cards={hand4Cards} cardClick={handleCards}></Hand>
+      <Hand player={1} turn={playerTurn} name='Max' cards={hand1Cards} cardClick={handleCards}></Hand>
+      <Hand player={2} turn={playerTurn} name='Lando' cards={hand2Cards} cardClick={handleCards}></Hand>
+      <Hand player={3} turn={playerTurn} name ='Kimi' cards={hand3Cards} cardClick={handleCards}></Hand>
+      <Hand player={4} turn={playerTurn} name ='Lewis' cards={hand4Cards} cardClick={handleCards}></Hand>
     </div>
   );
 }
