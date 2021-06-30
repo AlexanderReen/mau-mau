@@ -2,21 +2,21 @@ import Card from '../Card/Card';
 import './StockPile.scss'
 
 export interface StockPileProps {
-  cardClick: () => void;
+  handleClick: () => void;
 }
 
-const StockPile = ({cardClick}: StockPileProps) => {
+const StockPile = ({handleClick}: StockPileProps) => {
 
-  const cardClickHandler = () => {
+  const handleClickHandler = () => {
     return (event: React.MouseEvent) => {
-      cardClick();
+      handleClick();
       event.preventDefault();
     }
   }
 
   return (
     <div className='stock-pile'>
-     <Card side='back' click={cardClickHandler()}></Card>  
+     <Card side='back' handleClick={handleClickHandler()}></Card>  
     </div>
   );
 }

@@ -6,13 +6,13 @@ interface HandProps {
   turn: number;
   name: string;
   cards: CardProps[];
-  cardClick: (player: number, card: CardProps) => void;
+  handleClick: (player: number, card: CardProps) => void;
 }
 
-const Hand = ({ player, turn, name, cards, cardClick }: HandProps) => {
-  const cardClickHandler = (card: CardProps) => {
+const Hand = ({ player, turn, name, cards, handleClick }: HandProps) => {
+  const handleClickHandler = (card: CardProps) => {
     return (event: React.MouseEvent) => {
-      cardClick(player, card);
+      handleClick(player, card);
       event.preventDefault();
     };
   };
@@ -57,7 +57,7 @@ const Hand = ({ player, turn, name, cards, cardClick }: HandProps) => {
             suit={card.suit}
             rank={card.rank}
             side={card.side}
-            click={cardClickHandler(card)}
+            handleClick={handleClickHandler(card)}
           ></Card>
         ))}
       </div>

@@ -21,7 +21,9 @@ export interface playerHand {
 
 export interface GameState {
   inProgress: boolean;
-  winner: string;
+  showModal: boolean;
+  message: string;
+  winner: number;
   stockPile: CardProps[];
   discardPile: CardProps[];
   playerHands: CardProps[][];
@@ -30,7 +32,9 @@ export interface GameState {
 
 const initialState: GameState = {
   inProgress: false,
-  winner: "",
+  showModal: false,
+  message: '',
+  winner: NaN,
   stockPile: [],
   discardPile: [],
   playerHands: [],
@@ -44,6 +48,7 @@ const gameSlice = createSlice({
     // Starting the Mau-Mau game
     startGame(state) {
       state.inProgress = true;
+      state.message = 'A player almost won, watch out!';
       const cards = shuffleCards(initCards());
       const dealedCards = dealCards(cards);
       state.playerHands[1] = dealedCards.pile1;
@@ -83,20 +88,30 @@ const gameSlice = createSlice({
       state.stockPile = removeCard(stockPileCard, state.stockPile);
       state.playerTurn = state.playerTurn < 4 ? state.playerTurn + 1 : 1;
     },
-    playerWins(state, action: PayloadAction<playerHand>) {
-      state.inProgress = false;
-      //state.winner = action.payload.player;
-      //TODO: Add modal with close button => dispatch endGame
+    playerWon(state, action: PayloadAction<playerHand>) {
+      state.showModal = true;
+      state.message = 'A player won, it is player ' + action.payload.player + '!'
+      state.winner = action.payload.player;
+    },
+    showModal(state) {
+      state.showModal = true;
+    },
+    hideModal(state) {
+      state.showModal = false;
     },
   },
 });
 
-export const { startGame, endGame, playCard, drawCard, playerWins } =
+export const { startGame, endGame, showModal, hideModal, playCard, drawCard, playerWon } =
   gameSlice.actions;
 
+export const selectInProgress = (state: RootState) => state.game.inProgress;
+export const selectShowModal = (state: RootState) => state.game.showModal;
 export const selectPlayerHands = (state: RootState) => state.game.playerHands;
 export const selectDiscardPile = (state: RootState) => state.game.discardPile;
 export const selectStockPile = (state: RootState) => state.game.stockPile;
 export const selectPlayerTurn = (state: RootState) => state.game.playerTurn;
+export const selectMessage = (state: RootState) => state.game.message;
+export const selectWinner = (state: RootState) => state.game.winner;
 
 export default gameSlice.reducer;
