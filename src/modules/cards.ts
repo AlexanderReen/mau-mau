@@ -24,13 +24,6 @@ export const RANKS = {
     13: 'K',
 };
 
-//TODO: Implement game rules
-export const RULES = {
-    players: 4,
-    maxCards: 7,
-    trumps: false,
-}
-
 export const initCards = () => {
     const cards = [] as CardProps[];
 

@@ -50,7 +50,7 @@ const Hand = ({ player, turn, name, cards, cardClick }: HandProps) => {
     <div className={handClass}>
       <h1 className="hand__name">{name}</h1>
       <div className="hand__cards">
-        {cards.map((card) => (
+        {cards?.map((card) => (
           <Card
             key={card.id}
             id={card.id}

@@ -9,10 +9,7 @@ import {
   drawCard,
   playCard,
   selectDiscardPile,
-  selectPlayer1Hand,
-  selectPlayer2Hand,
-  selectPlayer3Hand,
-  selectPlayer4Hand,
+  selectPlayerHands,
   selectPlayerTurn,
   selectStockPile,
   startGame,
@@ -24,10 +21,7 @@ interface BoardProps {}
 
 const Board = ({}: BoardProps) => {
   const dispatch = useAppDispatch();
-  const hand1Cards = useAppSelector(selectPlayer1Hand);
-  const hand2Cards = useAppSelector(selectPlayer2Hand);
-  const hand3Cards = useAppSelector(selectPlayer3Hand);
-  const hand4Cards = useAppSelector(selectPlayer4Hand);
+  const playerCards = useAppSelector(selectPlayerHands);
   const discardCards = useAppSelector(selectDiscardPile);
   const stockCards = useAppSelector(selectStockPile);
   const playerTurn = useAppSelector(selectPlayerTurn);
@@ -58,28 +52,28 @@ const Board = ({}: BoardProps) => {
         player={1}
         turn={playerTurn}
         name="Max"
-        cards={hand1Cards}
+        cards={playerCards[1]}
         cardClick={handleCards}
       ></Hand>
       <Hand
         player={2}
         turn={playerTurn}
         name="Lando"
-        cards={hand2Cards}
+        cards={playerCards[2]}
         cardClick={handleCards}
       ></Hand>
       <Hand
         player={3}
         turn={playerTurn}
         name="Kimi"
-        cards={hand3Cards}
+        cards={playerCards[3]}
         cardClick={handleCards}
       ></Hand>
       <Hand
         player={4}
         turn={playerTurn}
         name="Lewis"
-        cards={hand4Cards}
+        cards={playerCards[4]}
         cardClick={handleCards}
       ></Hand>
     </div>
